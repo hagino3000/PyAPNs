@@ -350,3 +350,15 @@ class GatewayConnection(APNsConnection):
     def send_notification_multiple(self, frame):
         self.write(frame.get_frame())
 
+
+class APNsError(Exception):
+    """
+    A class representing an APNs error response
+    """
+    def __init__(self, status_code, identifier):
+        self.status_code = status_code
+        self.identifier = identifier
+        self.msg = 'Invalid payload found. Status: %s' % status_code
+
+        def __str__(self):
+            return self.msg
