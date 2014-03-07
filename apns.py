@@ -234,7 +234,7 @@ class Frame(object):
         token_length_bin = APNs.packed_ushort_big_endian(len(token_bin))
         token_item = '\1' + token_length_bin + token_bin
         item.extend(token_item)
-        
+
         payload_json = payload.json()
         payload_length_bin = APNs.packed_ushort_big_endian(len(payload_json))
         payload_item = '\2' + payload_length_bin + payload_json
@@ -257,7 +257,7 @@ class Frame(object):
         item.extend(priority_item)
 
         self.frame_data.extend('\2' + APNs.packed_uint_big_endian(len(item)) + item)
-    
+
     def get_frame(self):
         """Get the frame buffer"""
         return self.frame_data
